@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>재테크 카드뉴스 템플릿 (이미지+텍스트 분할형)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #0F7A6C;
+    --gold: #A8721E;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 610px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1) brightness(1);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 52px 72px 56px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 1.35;
+    margin-top: 14px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 20px;
+    font-size: 24px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 26px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 21px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 27px; font-weight: 700; line-height: 1.4; }
+  .item .d { font-size: 21px; color: var(--ink-soft); margin-top: 8px; line-height: 1.55; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(168,114,30,0.10);
+    border: 1px solid rgba(168,114,30,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 74px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 26px;
+    line-height: 1.75;
+    max-width: 760px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="https://images.unsplash.com/photo-1671469904766-a3728219d3b7?w=1080&h=610&fit=crop&q=80" alt="">
+      <div class="fade"></div>
+      <div class="tag">직장인 재테크</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">이번 달부터 바로 적용</div>
+      <div class="heading">월급 받자마자<br>다 어디로 <span class="accent">사라지는 걸까</span></div>
+      <div class="sub">통장을 4개로 나누기만 해도<br>이번 달부터 자동으로 남습니다.</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="https://images.unsplash.com/photo-1614260938313-a7fc1a7ad0d2?w=1080&h=610&fit=crop&q=80" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">왜 월급이 <span class="accent">안 남을까</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">통장이 하나뿐이라서</div>
+            <div class="d">고정지출, 비상금, 용돈이 다 한 곳에서 섞여서 얼마가 진짜 남는 돈인지 알 수가 없어요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">눈에 보이면 쓰게 된다</div>
+            <div class="d">잔액이 넉넉해 보이면 저축할 돈까지 자연스럽게 써버리게 돼요</div>
+            <div class="callout">평균 지출 오차 +18%</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">저축이 '남으면 하는 것'이 된다</div>
+            <div class="d">저축을 맨 마지막 순서에 두면, 대부분 남는 돈이 없어서 못 하게 돼요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=1080&h=610&fit=crop&q=80" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">통장을 <span class="accent">4개로</span> 나누세요</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">월급 통장</div>
+            <div class="d">월급이 들어오면 바로 다음 통장들로 자동이체 되고 텅 비어야 정상</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">고정지출 통장</div>
+            <div class="d">월세, 공과금, 구독료처럼 매달 똑같이 나가는 돈 전용</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">비상금 통장</div>
+            <div class="d">평소엔 존재도 잊고 지내는, 급할 때만 여는 통장</div>
+            <div class="callout">월급의 10%부터 시작</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">04</div>
+          <div>
+            <div class="t">자유 지출 통장</div>
+            <div class="d">이번 달 마음 편히 써도 되는 돈, 체크카드만 연결</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="https://images.unsplash.com/photo-1681825984459-47ee999da245?w=1080&h=610&fit=crop&q=80" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">적용 순서, <span class="accent">이렇게</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">월급날 다음날 새벽으로 이체일 설정</div>
+            <div class="d">월급을 눈으로 확인하기 전에 먼저 빠져나가게 하는 게 핵심</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">고정지출부터 먼저 이체</div>
+            <div class="d">매달 금액이 똑같은 항목부터 자동이체 등록</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">남은 돈에서 비상금 자동이체</div>
+            <div class="d">부담 없는 금액으로 시작해서 습관이 되면 비율을 늘려가요</div>
+            <div class="callout">3개월 뒤 재조정 추천</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="https://images.unsplash.com/photo-1643393671476-c4de72162a53?w=1080&h=610&fit=crop&q=80" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">이번 달부터 <span class="accent">바로 적용</span></div>
+      <div class="list">
+        <div class="stat-label">통장 개수 → 저축 성공률</div>
+        <div class="stat">1개 → 4개</div>
+        <div class="cta">
+          저장해두고 월급날 다시 열어보세요.<br>
+          <span class="accent">본인만의 통장 쪼개기 팁</span>이 있다면<br>
+          댓글로 남겨주세요 💬
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

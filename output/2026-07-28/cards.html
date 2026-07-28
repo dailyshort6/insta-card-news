@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>재테크 카드뉴스 — 2026-07-28 (FOMC 금리 발표)</title>
+<style>
+
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #0F7A6C;
+    --gold: #A8721E;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%);
+    z-index: 3;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 520px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cover .imgwrap {
+    height: 900px;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) sepia(0.08) contrast(1.03) brightness(1.02);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 40px 72px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover .textwrap {
+    padding: 38px 72px 40px;
+    justify-content: center;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 54px;
+    line-height: 1.32;
+    margin-top: 12px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 18px;
+    font-size: 29px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 24px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 23px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 34px; font-weight: 700; line-height: 1.35; }
+  .item .d { font-size: 26px; color: var(--ink-soft); margin-top: 5px; line-height: 1.4; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(168,114,30,0.10);
+    border: 1px solid rgba(168,114,30,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 82px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 31px;
+    line-height: 1.7;
+    max-width: 780px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="assets/img_cover.jpg" alt="">
+      <div class="fade"></div>
+      <div class="tag">오늘 밤 금리 발표</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">7월 28~29일, FOMC</div>
+      <div class="heading">오늘 밤 미국이<br>금리를 정하면<br><span class="accent">내 적금은?</span></div>
+      <div class="sub">인상이든 동결이든, 이번 결정이<br>내 대출과 예적금에 그대로 옵니다.</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="assets/img_02.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">왜 이 발표가 <span class="accent">내 돈</span>과 연결될까</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">변동금리 대출이 먼저 흔들린다</div>
+            <div class="d">금리가 오르면 매달 나가는 이자부터 바로 늘어나요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">예적금 이자도 같이 움직인다</div>
+            <div class="d">동결·인하 국면에선 예적금 금리가 슬금슬금 낮아져요</div>
+            <div class="callout">국내 CPI 3.2%</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">환율도 덩달아 출렁인다</div>
+            <div class="d">달러 예금이나 해외주식이 있다면 원화 환산액이 바로 바뀌어요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="assets/img_03.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">발표 전, <span class="accent">체크리스트</span> 4가지</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">내 대출, 변동금리인지 확인</div>
+            <div class="d">금리 인상 시 상환액이 얼마나 늘어나는지 미리 계산해두기</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">예적금 만기일 캘린더에 표시</div>
+            <div class="d">발표 직후 금리가 바뀌기 전에 재예치 여부 결정하기</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">파킹통장·CMA 금리 비교</div>
+            <div class="d">잠깐 넣어둘 돈이라면 지금 금리 좋은 곳으로 옮겨두기</div>
+            <div class="callout">美 실업률 4.2%</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">04</div>
+          <div>
+            <div class="t">달러 자산 비중 점검</div>
+            <div class="d">환율 변동에 대비해 외화 자산 비중을 한 번 확인하기</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="assets/img_04.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">시나리오별 <span class="accent">대응법</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">동결이면</div>
+            <div class="d">지금 재테크 루틴 그대로, 예적금 갈아타기만 챙기기</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">인하면</div>
+            <div class="d">예적금 금리 더 떨어지기 전에 만기 임박 상품부터 재예치</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">인상이면</div>
+            <div class="d">변동금리 대출부터 점검, 여유자금은 고금리 단기상품으로</div>
+            <div class="callout">다음 편: 파킹통장 비교</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="assets/img_05.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">오늘 밤 발표,<br><span class="accent">이제 준비 끝</span></div>
+      <div class="list">
+        <div class="stat-label">재테크 자세</div>
+        <div class="stat">관망 → 대응</div>
+        <div class="cta">
+          저장해두고 발표 결과 나오면 다시 열어보세요.<br>
+          <span class="accent">나만의 금리 대응법</span>이 있다면<br>
+          댓글로 '방법' 남겨주세요 💬
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

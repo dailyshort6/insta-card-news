@@ -13,8 +13,8 @@ search.md → message.md → style.md → upload.md 4개 단계를 순서대로 
   │
   ▼
 [1] search.md 실행
-  재테크/투자/경제 자료조사 → 후보 3개 압축
-  │  출력: 후보 3개 (JSON)
+  재테크/투자/경제 자료조사 → 후보 5개 압축
+  │  출력: 후보 5개 (JSON)
   ▼
 [2] message.md 실행
   텔레그램 전송 → 사람이 숫자로 답장 → 주제 확정
@@ -42,8 +42,8 @@ search.md → message.md → style.md → upload.md 4개 단계를 순서대로 
 
 | 단계 | 입력 | 출력 |
 |---|---|---|
-| search.md | (없음, 트리거로 시작) | 후보 3개 (주제/근거/후킹/형식) |
-| message.md | 후보 3개 | `{date, selected_topic, hook, format}` |
+| search.md | (없음, 트리거로 시작) | 후보 5개 (주제/근거/후킹/형식) |
+| message.md | 후보 5개 | `{date, selected_topic, hook, format}` |
 | style.md | 위 JSON | `{date, qa_passed, qa_retries, image_paths[], caption}` |
 | upload.md | 위 JSON | 게시 성공/실패 결과 |
 
@@ -66,7 +66,7 @@ search.md → message.md → style.md → upload.md 4개 단계를 순서대로 
 매일 08:30, 아래 순서대로 카드뉴스 파이프라인을 실행해줘.
 각 단계의 세부 방법은 해당 md 파일을 그대로 따른다.
 
-1. /mnt/user-data/outputs/search.md 방법대로 자료조사 → 주제 후보 3개 생성
+1. /mnt/user-data/outputs/search.md 방법대로 자료조사 → 주제 후보 5개 생성
 2. /mnt/user-data/outputs/message.md 방법대로 텔레그램 전송 → 사람 답장으로 주제 확정
 3. /mnt/user-data/outputs/style.md 방법대로 카피 작성 → finance_card_template.html에
    내용 삽입 → 이미지 렌더링 → 자체 QA

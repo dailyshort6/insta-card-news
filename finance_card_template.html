@@ -38,20 +38,31 @@
     overflow: hidden;
     position: relative;
   }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%);
+    z-index: 3;
+  }
 
   /* ---- top image half ---- */
   .imgwrap {
     position: relative;
-    height: 610px;
+    height: 520px;
     flex-shrink: 0;
     overflow: hidden;
+  }
+  .cover .imgwrap {
+    height: 900px;
   }
   .imgwrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: saturate(1) brightness(1);
+    filter: saturate(0.9) sepia(0.08) contrast(1.03) brightness(1.02);
   }
   .imgwrap .fade {
     position: absolute;
@@ -65,7 +76,7 @@
     bottom: 34px;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 19px;
     letter-spacing: 0.2px;
     color: var(--ink);
     background: rgba(16,18,20,0.55);
@@ -77,10 +88,14 @@
   /* ---- bottom text half ---- */
   .textwrap {
     flex: 1;
-    padding: 52px 72px 56px;
+    padding: 40px 72px 40px;
     position: relative;
     display: flex;
     flex-direction: column;
+  }
+  .cover .textwrap {
+    padding: 38px 72px 40px;
+    justify-content: center;
   }
   .textwrap::before {
     content: "";
@@ -97,20 +112,20 @@
   .eyebrow {
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 21px;
     color: var(--gold);
     letter-spacing: 0.5px;
   }
   .heading {
     font-weight: 900;
-    font-size: 46px;
+    font-size: 50px;
     line-height: 1.35;
     margin-top: 14px;
   }
   .heading .accent { color: var(--teal); }
   .sub {
     margin-top: 20px;
-    font-size: 24px;
+    font-size: 27px;
     color: var(--ink-soft);
     line-height: 1.6;
   }
@@ -119,7 +134,7 @@
   .item {
     display: flex;
     gap: 26px;
-    padding: 24px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--line);
     align-items: flex-start;
   }
@@ -130,15 +145,16 @@
     height: 48px;
     border-radius: 50%;
     border: 1.5px solid var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 21px;
+    font-size: 22px;
     color: var(--teal);
   }
-  .item .t { font-size: 27px; font-weight: 700; line-height: 1.4; }
-  .item .d { font-size: 21px; color: var(--ink-soft); margin-top: 8px; line-height: 1.55; }
+  .item .t { font-size: 31px; font-weight: 700; line-height: 1.4; }
+  .item .d { font-size: 24px; color: var(--ink-soft); margin-top: 6px; line-height: 1.45; }
 
   .callout {
     display: inline-block;
@@ -148,7 +164,7 @@
     color: var(--gold);
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 0.2px;
     padding: 7px 14px;
     border-radius: 6px;
@@ -160,7 +176,7 @@
     display: flex;
     justify-content: space-between;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
+    font-size: 17px;
     color: rgba(36,33,28,0.45);
     letter-spacing: 0.2px;
   }
@@ -170,18 +186,18 @@
   .closing .stat-label {
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 22px;
     color: var(--ink-soft);
     letter-spacing: 0.3px;
   }
   .closing .stat {
     font-weight: 900;
-    font-size: 74px;
+    font-size: 78px;
     color: var(--teal);
     margin: 18px 0 26px;
   }
   .closing .cta {
-    font-size: 26px;
+    font-size: 29px;
     line-height: 1.75;
     max-width: 760px;
   }

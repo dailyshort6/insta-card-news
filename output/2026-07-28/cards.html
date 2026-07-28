@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2026-07-28 카드뉴스</title>
+<style>
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-weight: 400;
+    font-style: normal;
+    src: url('fonts/f_400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/f_500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-weight: 700;
+    font-style: normal;
+    src: url('fonts/f2.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-weight: 900;
+    font-style: normal;
+    src: url('fonts/f3.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Mono';
+    font-weight: 600;
+    font-style: normal;
+    src: url('fonts/f1.woff2') format('woff2');
+  }
+
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #0F7A6C;
+    --gold: #A8721E;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%);
+    z-index: 3;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 520px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cover .imgwrap {
+    height: 900px;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) sepia(0.08) contrast(1.03) brightness(1.02);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 40px 72px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover .textwrap {
+    padding: 38px 72px 40px;
+    justify-content: center;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 1.35;
+    margin-top: 14px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 20px;
+    font-size: 27px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 26px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 31px; font-weight: 700; line-height: 1.4; }
+  .item .d { font-size: 24px; color: var(--ink-soft); margin-top: 6px; line-height: 1.45; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(168,114,30,0.10);
+    border: 1px solid rgba(168,114,30,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 78px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 29px;
+    line-height: 1.75;
+    max-width: 760px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="imgs/card01.jpg" alt="">
+      <div class="fade"></div>
+      <div class="tag">2026 짠테크</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">다들 알아야 하는 이야기</div>
+      <div class="heading">무조건 아끼면<br><span class="accent">왜 오래 못 갈까</span></div>
+      <div class="sub">요즘 짠테크는 다 줄이는 게 아니라<br>이것만 골라서 줄이는 겁니다.</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="imgs/card02.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">무조건 아끼면 <span class="accent">왜 실패</span>할까</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">다 줄이면 반드시 반동이 온다</div>
+            <div class="d">좋아하는 것까지 참으면 어느 순간 몰아서 써버리게 돼요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">내가 뭘 좋아하는지 모른 채 줄인다</div>
+            <div class="d">중요한 지출까지 죄책감만 느끼고, 정작 줄여야 할 지출은 놓쳐요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">절약이 숫자만 남고 재미가 없다</div>
+            <div class="d">기록하고 성취감을 느끼지 못하면 오래 지속하기 어려워요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="imgs/card03.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">핵심은 <span class="accent">내 기준</span> 정하기</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">쓸 것과 줄일 것 구분하기</div>
+            <div class="d">내게 중요한 소비는 남기고, 의미 없는 지출만 줄이는 방식</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">기록하고 확인하는 습관</div>
+            <div class="d">가계부 앱으로 매일 기록만 해도 줄어드는 지출이 눈에 보여요</div>
+            <div class="callout">짠테크는 이제 절약이 아니라 전략</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">작은 챌린지로 시작하기</div>
+            <div class="d">무지출 하루, 커피값 아끼기처럼 작게 시작해서 성취감을 쌓아요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="imgs/card04.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">오늘부터 <span class="accent">이렇게</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">이번 주 지출 항목 다 적어보기</div>
+            <div class="d">어디에 쓰는지부터 파악해야 뭘 줄일지가 보여요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">'이것만은 안 줄인다' 하나 정하기</div>
+            <div class="d">가장 만족감 큰 지출 하나는 남겨서 오래 지치지 않게</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">하루·한 주 단위 작은 챌린지 시작</div>
+            <div class="d">무지출 데이, 배달 안 시키기처럼 짧게 끊어서 실천</div>
+            <div class="callout">3개월 뒤 습관으로 자리잡아요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="imgs/card05.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">다 줄이지 말고 <span class="accent">이것만</span></div>
+      <div class="list">
+        <div class="stat-label">무조건 절약 → 나만의 기준 절약</div>
+        <div class="stat">다 줄이기 → 이것만</div>
+        <div class="cta">
+          저장해두고 이번 주부터 시작해보세요.<br>
+          <span class="accent">본인만의 절약 기준</span>이 있다면<br>
+          댓글로 남겨주세요 💬
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

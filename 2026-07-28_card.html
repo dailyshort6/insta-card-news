@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>재테크 카드뉴스 - 2026-07-28</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #0F7A6C;
+    --gold: #A8721E;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 610px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1) brightness(1);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 52px 72px 56px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 1.35;
+    margin-top: 14px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 20px;
+    font-size: 24px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 26px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 21px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 27px; font-weight: 700; line-height: 1.4; }
+  .item .d { font-size: 21px; color: var(--ink-soft); margin-top: 8px; line-height: 1.55; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(168,114,30,0.10);
+    border: 1px solid rgba(168,114,30,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    font-size: 16px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 68px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 26px;
+    line-height: 1.75;
+    max-width: 760px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="assets_2026-07-28/img1_cover.jpg" alt="">
+      <div class="fade"></div>
+      <div class="tag">기준금리 인상</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">7월 16일, 기준금리 인상</div>
+      <div class="heading">왜 갑자기<br>금리를 <span class="accent">또 올렸을까</span></div>
+      <div class="sub">0.25%p 오른 금리,<br>내 대출과 예금엔 어떤 영향이 있을까요</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="assets_2026-07-28/img2_entry1.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">왜 갑자기 <span class="accent">올렸을까</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">반도체 호황, 경기 확대</div>
+            <div class="d">반도체 업황 개선으로 성장세가 확대되며 물가 상승 압력도 함께 커졌어요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">물가가 계속 오르고 있어서</div>
+            <div class="d">수요 압력과 비용 상승이 겹치며 물가상승률이 높은 수준을 이어가고 있어요</div>
+            <div class="callout">2.50% → 2.75%</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">다음 결정은 8월 27일</div>
+            <div class="d">당분간은 이번 인상 효과를 지켜보며 신중하게 움직일 가능성이 커요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="assets_2026-07-28/img3_entry2.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">대출 있다면 <span class="accent">지금 확인</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">변동금리 대출, 이자 먼저 체크</div>
+            <div class="d">금리가 오르면 매달 갚는 이자가 그대로 늘어나요, 예상 상환액을 다시 계산해보세요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">고정금리 갈아타기 비교</div>
+            <div class="d">은행별 대환대출 금리를 비교해보면 생각보다 이득일 때가 있어요</div>
+            <div class="callout">이자 부담 즉시 반영</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">신용대출부터 우선 상환</div>
+            <div class="d">금리가 가장 높은 대출부터 여윳돈으로 먼저 갚는 게 유리해요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="assets_2026-07-28/img4_entry3.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">예금·저축 있다면 <span class="accent">기회</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">예금금리도 함께 오르는 중</div>
+            <div class="d">기준금리 인상은 예·적금 금리 인상으로 이어질 가능성이 높아요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">만기 임박 상품 갈아타기</div>
+            <div class="d">곧 만기되는 예금이 있다면 새 금리로 재예치하는 게 유리해요</div>
+            <div class="callout">특판 예금 확인 필수</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">파킹통장 금리 비교</div>
+            <div class="d">잠깐 넣어두는 돈도 금리 높은 파킹통장으로 옮기면 차이가 커요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="assets_2026-07-28/img5_closing.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">이번 인상, <span class="accent">나에게는?</span></div>
+      <div class="list">
+        <div class="stat-label">기준금리 변화</div>
+        <div class="stat">2.50% → 2.75%</div>
+        <div class="cta">
+          저장해두고 대출·예금 갈아타기 전에<br>다시 열어보세요.<br>
+          <span class="accent">본인만의 금리 대응 팁</span>이 있다면<br>
+          댓글로 '금리'라고 남겨주세요 💬
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

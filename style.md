@@ -110,6 +110,10 @@ message.md에서 넘어온 JSON:
 
 - HTML → 이미지 변환: Puppeteer 또는 Playwright로 각 카드 HTML을 스크린샷
   - 예약 작업 환경은 root 권한으로 실행되어 Chromium이 기본 설정으로는 실행 안 됨 → `puppeteer.launch({ args: ['--no-sandbox'] })` 필요 (실제 테스트로 확인됨)
+  - **폰트 문제 (실제 발생 확인됨)**: 템플릿이 구글 폰트(`fonts.googleapis.com`)를 `@import`로 불러오는데, 예약 작업 환경에서 이 요청이 실패해 시스템 기본 폰트로 렌더링되는 문제가 실제로 발생함 (렌더링된 카드 5장에서 확인). 렌더링 전에 아래를 확인/실행:
+    1. `fc-list | grep -i "noto sans"`로 한글 폰트가 시스템에 설치되어 있는지 확인
+    2. 없으면 설치: `apt-get update && apt-get install -y fonts-noto-cjk` (root 권한이라 sudo 불필요)
+    3. 템플릿의 `font-family`는 `'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif`처럼 시스템 설치 폰트명을 폴백으로 포함하도록 이미 수정됨 — 구글 폰트 `@import`가 실패해도 설치된 시스템 폰트로 대체됨
 - 규격: 1080x1350px (4:5, 세로형) — 확정값. 정사각형보다 피드에서 더 많은 화면을 차지해 노출에 유리
 - 파일명 규칙: `{날짜}_card_01.png`, `{날짜}_card_02.png` ...
 

@@ -1,0 +1,6 @@
+2026-07-29 | 개인투자용 국채
+  card1 [일상/손] photo-1763729805496-b5dbf7f00c79 - man signing a document with a pen
+  card2 [손 클로즈업] photo-1710492341412-8b3aee7e70a6 - hand holding calculator/phone over finance chart printout (QA: original pick 1661588027939 turned out to be a keyboard photo, replaced)
+  card3 [탑뷰/플랫레이] photo-1566355832516-3644f7b47818 - flat-lay pen on top of a notebook
+  card4 [인물 뒷모습/실루엣] photo-1505147684-25d561ccb202 - silhouette of person facing a window, no face visible (QA: original pick 1758598304329 had a clearly identifiable face, replaced per style.md portrait-rights rule)
+  card5 [자연/사물 은유] photo-1533090161767-e6ffed986c88 - white desk lamp beside green plant

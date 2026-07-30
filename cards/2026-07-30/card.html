@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2026-07-30 카드뉴스 - 휴가철 마트 할인</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #1F3A5F;
+    --gold: #B85C38;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%);
+    z-index: 3;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 520px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cover .imgwrap {
+    height: 900px;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) sepia(0.08) contrast(1.03) brightness(1.02);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 40px 72px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover .textwrap {
+    padding: 38px 72px 40px;
+    justify-content: center;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 54px;
+    line-height: 1.32;
+    margin-top: 12px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 18px;
+    font-size: 29px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 24px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', 'Noto Sans Mono', monospace;
+    font-size: 23px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 34px; font-weight: 700; line-height: 1.35; }
+  .item .d { font-size: 26px; color: var(--ink-soft); margin-top: 5px; line-height: 1.4; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(184,92,56,0.10);
+    border: 1px solid rgba(184,92,56,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-size: 18px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 82px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 31px;
+    line-height: 1.7;
+    max-width: 780px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="images/01_cover.jpg" alt="">
+      <div class="fade"></div>
+      <div class="tag">휴가철 장보기</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">이번 주말 장보기 전 필수 체크</div>
+      <div class="heading">마트 할인, <span class="accent">이 순서</span>로 담아야 돈이 남습니다</div>
+      <div class="sub">이마트 고래잇페스타·롯데마트 통큰데이,<br>아무렇게나 담으면 오히려 손해입니다.</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="images/02_entry01.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">왜 하필 <span class="accent">지금</span>일까</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">물가 3%대, 체감은 더 크다</div>
+            <div class="d">6월 소비자물가 상승률 3.2%, 2년 6개월 만에 가장 높은 수준이라 장바구니 부담이 유독 크게 느껴져요</div>
+            <div class="callout">물가상승률 3.2%</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">여름 휴가철 = 마트 최대 할인 시즌</div>
+            <div class="d">이마트 고래잇페스타, 롯데마트 통큰데이 등 방학·휴가 수요를 겨냥한 대규모 할인이 겹치는 시기예요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">신선식품·물놀이용품 최대 반값</div>
+            <div class="d">휴가철 한정으로 신선식품, 여름 용품까지 할인폭이 평소보다 훨씬 커집니다</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="images/03_entry02.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">이렇게 <span class="accent">담아야</span> 남습니다</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">필요한 만큼만, 목록부터 작성</div>
+            <div class="d">행사장 가기 전 살 것을 미리 적어두면 충동구매를 크게 줄일 수 있어요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">반값 신선식품은 소분해서 냉동</div>
+            <div class="d">할인폭이 큰 신선식품은 한 번에 다 못 먹어도 소분 냉동하면 낭비 없이 활용할 수 있어요</div>
+            <div class="callout">최대 50% 할인</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">물놀이용품은 지금이 제일 쌉니다</div>
+            <div class="d">여름 한정 할인 품목은 1년 중 지금이 가장 저렴하게 살 수 있는 시점이에요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">04</div>
+          <div>
+            <div class="t">1+1보다 단가부터 비교</div>
+            <div class="d">묶음 할인이어도 1개당 가격이 더 저렴한지 꼭 확인하고 담으세요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="images/04_entry03.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">이건 <span class="accent">피해야</span> 합니다</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">마감 임박 알림에 낚이지 않기</div>
+            <div class="d">타임세일 문구에 계획 없던 물건까지 담게 되는 경우가 많아요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">대용량이 항상 저렴한 건 아니다</div>
+            <div class="d">가족 인원수보다 큰 용량은 결국 다 못 쓰고 버려지는 경우가 많아요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">카드 할인 조건, 미리 확인</div>
+            <div class="d">특정 카드·앱 결제 시에만 적용되는 할인이 많아 현장에서 놓치기 쉬워요</div>
+            <div class="callout">전월 실적 조건 확인</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="images/05_closing.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">이번 주말부터 <span class="accent">바로 적용</span></div>
+      <div class="list">
+        <div class="stat-label">휴가철 한정 할인폭</div>
+        <div class="stat">최대 50%</div>
+        <div class="cta">
+          저장해두고 장보러 가기 전 다시 열어보세요.<br>
+          <span class="accent">본인만의 장보기 절약 팁</span>이 있다면<br>
+          댓글로 남겨주세요 💬
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

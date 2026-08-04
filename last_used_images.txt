@@ -1,0 +1,5 @@
+2026-08-03 | card01(cover) | 인물 뒷모습/실루엣 | 실내 대형 유리건물 걷는 사람 실루엣 | https://images.unsplash.com/photo-1767238270052-c7c3540dcd3d
+2026-08-03 | card02 | 손/행동 클로즈업 | 서류에 서명하는 손 | https://images.unsplash.com/photo-1763729805496-b5dbf7f00c79
+2026-08-03 | card03 | 탑뷰/플랫레이 | 계산기+문구류 책상 플랫레이 | https://images.unsplash.com/photo-1617329636938-90cf1b12c279
+2026-08-03 | card04 | 일상 장면 | 신문 읽는 사람(커피) | https://images.unsplash.com/photo-1689421755116-afec95af4f69
+2026-08-03 | card05(closing) | 자연/사물 은유 | 창문 커튼 사이 아침 햇살 | https://images.unsplash.com/photo-1760243790660-a7958d7843ee

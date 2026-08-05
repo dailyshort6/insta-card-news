@@ -1,0 +1,23 @@
+{
+  "name": "insta-card-news",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjh15923/insta-card-news.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kjh15923/insta-card-news/issues"
+  },
+  "homepage": "https://github.com/kjh15923/insta-card-news#readme",
+  "dependencies": {
+    "puppeteer": "^25.5.0"
+  }
+}

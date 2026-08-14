@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2026-08-14 카드뉴스 - 8월 4일부터 부동산 세금, 이렇게 바뀐다</title>
+<style>
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #1F3A5F;
+    --gold: #B85C38;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%);
+    z-index: 3;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 520px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cover .imgwrap {
+    height: 900px;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) sepia(0.08) contrast(1.03) brightness(1.02);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 40px 72px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover .textwrap {
+    padding: 38px 72px 40px;
+    justify-content: center;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 54px;
+    line-height: 1.32;
+    margin-top: 12px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 18px;
+    font-size: 29px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 24px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', 'Noto Sans Mono', monospace;
+    font-size: 23px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 34px; font-weight: 700; line-height: 1.35; }
+  .item .d { font-size: 26px; color: var(--ink-soft); margin-top: 5px; line-height: 1.4; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(184,92,56,0.10);
+    border: 1px solid rgba(184,92,56,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-size: 18px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 82px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 31px;
+    line-height: 1.7;
+    max-width: 780px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="img/01_cover.jpg" alt="">
+      <div class="fade"></div>
+      <div class="tag">부동산 세금</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">8월 4일부터 바로 적용</div>
+      <div class="heading">내 집 한 채인데도<br>세금 <span class="accent">더 낼 수도</span> 있다고?</div>
+      <div class="sub">정부가 8월 3일 발표한 세제개편안,<br>바뀌는 부분만 딱 정리했습니다.</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="img/02.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">종부세, <span class="accent">'거주기간'</span>이 더 중요해졌다</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">예전엔 오래 갖고만 있어도 감면</div>
+            <div class="d">보유기간만 채우면 됐는데, 실제로 살지 않아도 세금 혜택을 받을 수 있었어요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">이제는 '살아야' 감면 폭이 커진다</div>
+            <div class="d">실거주 기간이 길수록 종부세 부담이 줄어드는 구조로 바뀌었어요</div>
+            <div class="callout">공시가 9억·14억 기준</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">갭투자·비거주 매물은 상대적으로 불리</div>
+            <div class="d">전세를 끼고 사놓기만 한 집은 감면 혜택에서 멀어져요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>부동산 세금 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="img/03.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">종부세, <span class="accent">'주택수'</span>보다 '가액'</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">다주택자여도 저가면 유리해질 수도</div>
+            <div class="d">합산 가액이 낮으면 여러 채를 갖고 있어도 부담이 예전보다 줄 수 있어요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">1주택이어도 초고가면 불리해질 수도</div>
+            <div class="d">집이 한 채뿐이어도 공시가격이 높으면 세금이 늘어날 수 있어요</div>
+            <div class="callout">공정시장가액비율 70~80%</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">판단 기준이 '몇 채'에서 '얼마'로</div>
+            <div class="d">보유 채수보다 전체 주택가액이 세금을 가르는 기준이 됐어요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>부동산 세금 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="img/04.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">양도세, <span class="accent">'거주'</span>해야 공제받는다</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">예전엔 오래 보유만 해도 공제</div>
+            <div class="d">장기보유특별공제는 실제로 살지 않아도 보유기간만으로 받을 수 있었어요</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">이제는 거주 여부가 공제액을 좌우</div>
+            <div class="d">직접 거주한 기간이 길수록 양도세 공제가 커지는 구조로 바뀌었어요</div>
+            <div class="callout">거주공제로 전환</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">갭투자자는 공제 폭이 줄어든다</div>
+            <div class="d">전세를 끼고 사둔 뒤 살지 않고 판 집은 공제 혜택이 예전보다 작아져요</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>부동산 세금 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="img/05.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">정리하면, <span class="accent">'실거주'</span>가 답</div>
+      <div class="list">
+        <div class="stat-label">새 규정 적용 시작일</div>
+        <div class="stat">8.4</div>
+        <div class="cta">
+          8월 4일 이후 신규 취득,<br>10월 1일 이후 양도부터 적용돼요.<br>
+          <span class="accent">8월 3일 이전 계약자는</span><br>종전 규정 적용 여부를 꼭 확인하세요.<br>
+          궁금한 점은 댓글로 '세금' 남겨주세요 💬<br>
+          저장해두면 나중에 다시 보기 편해요
+        </div>
+      </div>
+      <div class="page-foot"><span>부동산 세금 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

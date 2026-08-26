@@ -1,0 +1,5 @@
+2026-08-26 | card01(표지) | 일상 장면/손 클로즈업 | 남성이 테이블에서 택배 상자를 포장하는 모습 (person packing shipping box, home office)
+2026-08-26 | card02 | 일상 장면 | 야간에 노트북/모니터 앞에서 작업하는 사람 뒷모습 실루엣 (person coding on laptop at night)
+2026-08-26 | card03 | 탑뷰/플랫레이 | 테이블 위 열린 골판지 상자 클로즈업 (open cardboard box on table, top angle)
+2026-08-26 | card04 | 손 클로즈업 | 노트에 체크리스트를 손으로 적는 모습 (hand writing checklist in notebook)
+2026-08-26 | card05(마무리) | 인물 뒷모습/실루엣 | 창가에서 화분을 바라보는 인물 실루엣 (silhouette looking out window)

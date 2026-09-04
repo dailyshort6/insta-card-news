@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>재테크 카드뉴스 템플릿 (이미지+텍스트 분할형)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #F7F2E7;
+    --ink: #24211C;
+    --ink-soft: #6B6459;
+    --teal: #0F7A6C;
+    --gold: #A8721E;
+    --line: rgba(36,33,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #333;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%);
+    z-index: 3;
+  }
+
+  /* ---- top image half ---- */
+  .imgwrap {
+    position: relative;
+    height: 520px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cover .imgwrap {
+    height: 900px;
+  }
+  .imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) sepia(0.08) contrast(1.03) brightness(1.02);
+  }
+  .imgwrap .fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--bg) 92%);
+  }
+  .imgwrap .tag {
+    position: absolute;
+    left: 48px;
+    bottom: 34px;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    color: var(--ink);
+    background: rgba(16,18,20,0.55);
+    border: 1px solid rgba(244,242,234,0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* ---- bottom text half ---- */
+  .textwrap {
+    flex: 1;
+    padding: 40px 72px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover .textwrap {
+    padding: 38px 72px 40px;
+    justify-content: center;
+  }
+  .textwrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(36,33,28,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,28,0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .textwrap > * { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .heading {
+    font-weight: 900;
+    font-size: 54px;
+    line-height: 1.32;
+    margin-top: 12px;
+  }
+  .heading .accent { color: var(--teal); }
+  .sub {
+    margin-top: 18px;
+    font-size: 29px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .list { margin-top: 24px; flex: 1; display: flex; flex-direction: column; }
+  .item {
+    display: flex;
+    gap: 24px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', 'Noto Sans Mono', monospace;
+    font-size: 23px;
+    color: var(--teal);
+  }
+  .item .t { font-size: 34px; font-weight: 700; line-height: 1.35; }
+  .item .d { font-size: 26px; color: var(--ink-soft); margin-top: 5px; line-height: 1.4; }
+
+  .callout {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(168,114,30,0.10);
+    border: 1px solid rgba(168,114,30,0.35);
+    color: var(--gold);
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+
+  .page-foot {
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-size: 18px;
+    color: rgba(36,33,28,0.45);
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- closing card ---- */
+  .closing .list { justify-content: center; align-items: center; text-align: center; }
+  .closing .stat-label {
+    font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'NanumGothic', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+  }
+  .closing .stat {
+    font-weight: 900;
+    font-size: 82px;
+    color: var(--teal);
+    margin: 18px 0 26px;
+  }
+  .closing .cta {
+    font-size: 31px;
+    line-height: 1.7;
+    max-width: 780px;
+  }
+  .closing .cta .accent { color: var(--gold); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- CARD 1: 표지 -->
+  <div class="card cover">
+    <div class="imgwrap">
+      <img src="imgs/cover.jpg" alt="">
+      <div class="fade"></div>
+      <div class="tag">부업 후기</div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">부업 실패 후기</div>
+      <div class="heading">상품 수백 개 올렸는데<br>7개월째 주문 <span class="accent">0건</span></div>
+      <div class="sub">다들 부업으로 번다는데<br>왜 나만 안 팔릴까요</div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="imgs/card2.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 01</div>
+      <div class="heading">주문이 <span class="accent">0건</span>이었던 이유</div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">다른 셀러와 똑같은 상품</div>
+            <div class="d">가격도 사진도 거기서 거기라, 굳이 내 가게에서 살 이유가 없었다</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">상세페이지가 부실했다</div>
+            <div class="d">사진 몇 장에 설명 두어 줄이 전부라, 살까 말까 망설이다 그냥 나가버렸다</div>
+            <div class="callout">설명 부족 = 신뢰 부족</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">검색에 아예 노출이 안 됐다</div>
+            <div class="d">키워드를 대충 넣어서 검색해도 상품이 뜨지 않으니, 애초에 볼 사람이 없었다</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.01</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="imgs/card3.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 02</div>
+      <div class="heading">이렇게 <span class="accent">바꿔봤다</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">잘 팔리는 상품 뜯어보기</div>
+            <div class="d">경쟁 상품들의 후기, 사진, 제목을 하나하나 분석했다</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">상세페이지 다시 쓰기</div>
+            <div class="d">실사용 사진과 비교 정보를 채워 성의 있게 다시 만들었다</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">키워드 전면 교체</div>
+            <div class="d">실제로 검색되는 단어로 상품명과 태그를 다시 세팅했다</div>
+            <div class="callout">검색 노출 순위부터 확인</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">04</div>
+          <div>
+            <div class="t">첫 리뷰 만들기</div>
+            <div class="d">지인 구매로라도 리뷰 몇 개를 먼저 채워 신뢰 지표를 만들었다</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.02</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card">
+    <div class="imgwrap">
+      <img src="imgs/card4.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">ENTRY 03</div>
+      <div class="heading">그렇게 <span class="accent">달라진 것들</span></div>
+      <div class="list">
+        <div class="item">
+          <div class="badge">01</div>
+          <div>
+            <div class="t">몇 달 만에 첫 주문</div>
+            <div class="d">0건이던 주문이 조금씩 들어오기 시작했다</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">02</div>
+          <div>
+            <div class="t">숫자보다 관점이 바뀌었다</div>
+            <div class="d">매출보다 '내 상품이 보이고 있는가'를 먼저 점검하게 됐다</div>
+            <div class="callout">보이지 않으면 안 팔린다</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="badge">03</div>
+          <div>
+            <div class="t">진짜 문제는 상품이 아니었다</div>
+            <div class="d">좋은 상품도 눈에 띄지 않으면 팔리지 않는다는 걸 몸으로 배웠다</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.03</span></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 마무리 -->
+  <div class="card closing">
+    <div class="imgwrap">
+      <img src="imgs/card5.jpg" alt="">
+      <div class="fade"></div>
+    </div>
+    <div class="textwrap">
+      <div class="eyebrow">SUMMARY</div>
+      <div class="heading">부업, <span class="accent">포기하기 전에</span></div>
+      <div class="list">
+        <div class="stat-label">7개월간 주문</div>
+        <div class="stat">0건</div>
+        <div class="cta">
+          상품 탓하기 전에 상세페이지와<br>
+          <span class="accent">키워드부터 다시 점검해보세요.</span><br>
+          비슷한 경험 있다면 댓글로 남겨주세요 💬
+        </div>
+      </div>
+      <div class="page-foot"><span>재테크 카드뉴스</span><span>P.04</span></div>
+    </div>
+  </div>
+
+</body>
+</html>
